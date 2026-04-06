@@ -20,6 +20,12 @@ export default defineConfig({
 					label: 'Reference',
 					autogenerate: { directory: 'reference' },
 				},
+				{
+					label: 'Ubuntu',
+					items: [
+						{ label: 'Auto Install', slug: 'ubuntu/autoinstall' },
+					]
+				}
 			],
 		}),
 	],
