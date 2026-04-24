@@ -24,6 +24,7 @@ export default defineConfig({
 					label: 'Ubuntu',
 					items: [
 						{ label: 'Auto Install', slug: 'ubuntu/autoinstall' },
+						{ label: 'Install Media', slug: 'ubuntu/install-media'},
 					]
 				}
 			],
