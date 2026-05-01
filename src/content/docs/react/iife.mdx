@@ -1,0 +1,95 @@
+---
+title: 即時関数(IIFE)
+description: JSX内で即時関数(IIFE)を使う場面と書き方のまとめ
+---
+
+JSXの中で条件によって値を出し分けたいとき、即時関数(IIFE: Immediately Invoked Function Expression)を使うと素直に書ける場面がある。自分が調べて整理した内容をまとめる。
+
+## 前提: JS/TSの`if`や`switch`は「文」である
+
+JavaScript / TypeScriptでは`if`や`switch`は **文(statement)** であり、 **式(expression)** ではない。
+そのため、結果を直接変数に束縛することができない。
+
+```ts
+// これはできない
+const label = if (status === 'ok') { 'OK' } else { 'NG' };
+```
+
+JSXの中で条件分岐したい場面では、これが地味に効いてくる。
+
+## 1. `let`で定義して`if` / `switch`で上書きする
+
+一番素朴なやり方。
+
+```ts
+let label: string;
+if (status === 'ok') {
+  label = 'OK';
+} else if (status === 'pending') {
+  label = 'Pending';
+} else {
+  label = 'NG';
+}
+```
+
+ただ、
+
+- `let`を使うので再代入可能になってしまう
+- 初期化忘れで`undefined`になるリスクがある
+- 宣言と代入が分離していて読みづらい
+
+という点で微妙。
+
+## 2. 三項演算子を使う
+
+式として評価できるので、`const`に直接束縛できる。
+
+```ts
+const label = status === 'ok' ? 'OK' : 'NG';
+```
+
+JSX内でもそのまま埋め込める。
+
+```tsx
+<span>{status === 'ok' ? 'OK' : 'NG'}</span>
+```
+
+シンプルなときはこれで十分。
+
+## 3. 複雑になってきたら即時関数(IIFE)を使う
+
+三項演算子のネストが増えたり、分岐ごとに前処理が必要になったりすると一気に読みづらくなる。
+そういうときに即時関数を使う。
+
+```tsx
+<span>
+  {(() => {
+    switch (status) {
+      case 'ok':
+        return 'OK';
+      case 'pending':
+        return 'Pending...';
+      case 'error':
+        return 'NG';
+      default:
+        return '-';
+    }
+  })()}
+</span>
+```
+
+ポイント:
+
+- `if` / `switch`という「文」を関数の中に閉じ込め、関数呼び出しという「式」にすることで値として扱える
+- `const`に束縛できるし、JSXに直接埋め込める
+- 分岐ごとに変数を準備するなどの前処理も書ける
+
+## 使い分けの目安
+
+| 複雑さ | 推奨 |
+| --- | --- |
+| 2分岐で副作用なし | 三項演算子 |
+| 3分岐以上 / 前処理あり | 即時関数(IIFE) |
+| ロジックが大きい | 普通の関数に切り出す |
+
+今のところはこの整理で困っていない。さらに大きくなる場合はコンポーネント or 関数に切り出すのが素直だと思う。
