@@ -26,6 +26,12 @@ export default defineConfig({
 						{ label: 'Auto Install', slug: 'ubuntu/autoinstall' },
 						{ label: 'Install Media', slug: 'ubuntu/install-media'},
 					]
+				},
+				{
+					label: 'React',
+					items: [
+						{ label: '即時関数(IIFE)', slug: 'react/iife' },
+					]
 				}
 			],
 		}),
