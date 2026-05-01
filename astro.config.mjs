@@ -4,6 +4,8 @@ import starlight from '@astrojs/starlight';
 
 // https://astro.build/config
 export default defineConfig({
+	site: 'https://shuheix.github.io',
+	base: '/web_memo/',
 	integrations: [
 		starlight({
 			title: 'My Docs',
