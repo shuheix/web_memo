@@ -23,6 +23,12 @@ export default defineConfig({
 					autogenerate: { directory: 'reference' },
 				},
 				{
+					label: 'TypeScript',
+					items: [
+						{ label: 'interfaceとGoとの比較', slug: 'typescript/interface' },
+					]
+				},
+				{
 					label: 'Ubuntu',
 					items: [
 						{ label: 'Auto Install', slug: 'ubuntu/autoinstall' },
