@@ -34,6 +34,12 @@ export default defineConfig({
 					items: [
 						{ label: '即時関数(IIFE)', slug: 'react/iife' },
 					]
+				},
+				{
+					label: 'Git',
+					items: [
+						{ label: 'OSS 向けの Git 基礎', slug: 'git/git-basics-for-oss' },
+					]
 				}
 			],
 		}),
