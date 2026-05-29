@@ -41,6 +41,12 @@ export default defineConfig({
 					items: [
 						{ label: 'OSS 向けの Git 基礎', slug: 'git/git-basics-for-oss' },
 					]
+				},
+				{
+					label: 'Ruby',
+					items: [
+						{ label: '型チェッカーの現在地', slug: 'ruby/type-checker' },
+					]
 				}
 			],
 		}),
