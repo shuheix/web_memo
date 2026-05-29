@@ -40,6 +40,12 @@ export default defineConfig({
 					items: [
 						{ label: '即時関数(IIFE)', slug: 'react/iife' },
 					]
+				},
+				{
+					label: '関数型',
+					items: [
+						{ label: 'モナド・ROP・Either・Effect の全体像', slug: 'functional/monad-rop-either-effect' },
+					]
 				}
 			],
 		}),
