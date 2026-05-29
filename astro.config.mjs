@@ -42,6 +42,12 @@ export default defineConfig({
 					]
 				},
 				{
+					label: '関数型',
+					items: [
+						{ label: 'モナド・ROP・Either・Effect の全体像', slug: 'functional/monad-rop-either-effect' },
+					]
+				},
+				{
 					label: 'Git',
 					items: [
 						{ label: 'OSS 向けの Git 基礎', slug: 'git/git-basics-for-oss' },
