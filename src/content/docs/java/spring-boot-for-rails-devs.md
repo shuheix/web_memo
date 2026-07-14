@@ -91,6 +91,40 @@ starter を足すと、**クラスパスにそれがあることを検知して�
 
 ---
 
+## 実務でよく使う依存
+
+「足せる依存」は無数にあるが、API サーバを書く場合は実質いつも同じ構成に落ち着く。
+
+### ほぼ必ず入る（土台）
+
+| 依存 | 用途 |
+|---|---|
+| `spring-boot-starter-web` | REST API / Spring MVC + 組込 Tomcat |
+| `spring-boot-starter-data-jpa` | ORM |
+| `spring-boot-starter-validation` | Bean Validation |
+| `spring-boot-starter-actuator` | ヘルスチェック・メトリクス。k8s の liveness/readiness に使うので本番なら入れる |
+| `spring-boot-starter-test` | JUnit 5 + Mockito + AssertJ。Initializr がデフォルトで入れる |
+| Flyway | マイグレーション |
+| DB ドライバ (`postgresql` 等) | |
+
+### 要件次第で入る
+
+- **`spring-boot-starter-security`**: 認証があるなら。JWT を使うなら `spring-boot-starter-oauth2-resource-server` も。**Devise のような「載せれば動く」ものではない**ので、入れた時点で `SecurityFilterChain` を書く作業が発生する。
+- **Lombok**: starter ではないが実質デファクト。`@Getter` などでボイラープレートを削減する。ただし `record` で足りる場面では不要になりつつある。
+- **springdoc-openapi**: アノテーションから Swagger UI を自動生成。rswag 的な立ち位置。
+- **Testcontainers**: 実 DB をコンテナで立てて統合テストする。
+
+### 意外と使わない
+
+- **Thymeleaf**: フロントを React 等で分ける構成が主流なので、出番がないことが多い。Rails の ERB の感覚で「View だから当然要る」と入れると持て余す。
+- Java Mail Sender / WebSocket: 要件があるときだけ。
+
+### JPA か MyBatis か
+
+日本の実務では **Spring Data JPA より MyBatis（や Doma）が選ばれることも多い**。JPA は「オブジェクトに寄せて SQL を隠す」思想なので、SQL を自分で書いて握りたい現場では MyBatis に倒す。Active Record に慣れていると JPA の方が感覚は近いが、案件によっては MyBatis 前提のことがある。
+
+---
+
 ## レイヤ構成の対比
 
 | Rails | Spring |
