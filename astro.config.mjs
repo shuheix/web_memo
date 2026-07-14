@@ -41,6 +41,12 @@ export default defineConfig({
 					items: [
 						{ label: 'OSS 向けの Git 基礎', slug: 'git/git-basics-for-oss' },
 					]
+				},
+				{
+					label: 'Java',
+					items: [
+						{ label: 'Rails と比較した Spring Boot', slug: 'java/spring-boot-for-rails-devs' },
+					]
 				}
 			],
 		}),
