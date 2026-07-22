@@ -56,7 +56,7 @@ export default defineConfig({
 				{
 					label: 'アプリ要件',
 					items: [
-						{ label: 'ミニ SNS サンプルアプリの機能一覧', slug: 'app-requirements/rails-tutorial' },
+						{ label: 'ミニ SNS サンプルアプリのエンドポイント一覧', slug: 'app-requirements/rails-tutorial' },
 					]
 				}
 			],
