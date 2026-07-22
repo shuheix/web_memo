@@ -41,6 +41,12 @@ export default defineConfig({
 					items: [
 						{ label: 'OSS 向けの Git 基礎', slug: 'git/git-basics-for-oss' },
 					]
+				},
+				{
+					label: 'アプリ要件',
+					items: [
+						{ label: 'ミニ SNS サンプルアプリのエンドポイント一覧', slug: 'app-requirements/rails-tutorial' },
+					]
 				}
 			],
 		}),
